@@ -1,0 +1,96 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Mail, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent } from "@/components/ui/card";
+
+const LOGO_URL = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/2bd4d3ffe_LogoAlumot-Stav.png";
+
+export default function ContactSection() {
+  const [formData, setFormData] = React.useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: ""
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+  };
+
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  return (
+    <section id="contact" className="py-20 bg-slate-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16">
+
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-right">
+            דברו איתנו
+          </h2>
+        </motion.div>
+
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}>
+
+            <Card className="bg-slate-800/50 border-slate-700/50">
+              <CardContent className="p-8">
+                <div className="flex justify-center items-center gap-4 mb-8 text-center">
+                    <Mail className="w-6 h-6 text-teal-300" />
+                    <h3 className="text-xl font-semibold text-white">דוא"ל העמותה:</h3>
+                    <a href="mailto:alumot@8200.org.il" className="text-xl text-teal-300 hover:text-teal-200 transition-colors">
+                        alumot@8200.org.il
+                    </a>
+                </div>
+                
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Input
+                        placeholder="שם פרטי"
+                        value={formData.firstName}
+                        onChange={(e) => handleInputChange("firstName", e.target.value)}
+                        className="bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 text-right"
+                        required />
+
+                    </div>
+                     <div>
+                      <Input
+                        placeholder="שם משפחה"
+                        value={formData.lastName}
+                        onChange={(e) => handleInputChange("lastName", e.target.value)}
+                        className="bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 text-right"
+                        required />
+
+                    </div>
+                  </div>
+                  <div>
+                    <Input
+                      type="email"
+                      placeholder="כתובת דוא״ל"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      className="bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 text-right"
+                      required />
+
+                  </div>
+                  <div>
+                    <Textarea
+                      placeholder="הודעה"
+                      value={formData.message}
+                      onChange={(e) => handleInputChange("message", e.target.value)}
+ 

@@ -1,0 +1,82 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Handshake, Mic, Briefcase, Users } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+export default function CollaborationsSection() {
+  const collaborationItems = [
+  {
+    icon: Mic,
+    title: "הרצאות",
+    description: "העברת הרצאות מקצועיות ומעוררות השראה מפי בוגרי היחידה."
+  },
+  {
+    icon: Users,
+    title: "כנסים",
+    description: "אירוח כנסים ואירועי חברה לקהילת הבוגרים בארגונכם."
+  },
+  {
+    icon: Briefcase,
+    title: "השמה",
+    description: "אנו מסייעים ביצירת החיבור המדויק בין חברות מובילות לבוגרי היחידה."
+  },
+  {
+    icon: Handshake,
+    title: "רוצים לשתף פעולה?",
+    description: "צרו עמנו קשר ונשמח לבחון הזדמנויות לשיתופי פעולה."
+  }];
+
+
+  return (
+    <section id="collaborations" className="py-20 bg-slate-900">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16">
+
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-center">שיתופי פעולה
+
+          </h2>
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto text-right">
+                        העמותה יוצרת שיתופי פעולה רבים עם חברות במשק הישראלי, במטרה לחזק ולשרת את בוגרי היחידה ואת החברות השותפות כאחד.
+                    </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {collaborationItems.map((item, index) =>
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center group bg-slate-800/50 rounded-3xl p-8 border border-slate-700/50 hover:border-teal-500/30 transition-all duration-300 flex flex-col justify-between">
+
+                           <div>
+                                <div className="w-20 h-20 bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-teal-600 group-hover:to-cyan-700 transition-all duration-300 shadow-lg">
+                                    <item.icon className="w-10 h-10 text-teal-400 group-hover:text-white transition-colors duration-300" />
+                                </div>
+                                <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
+                                <p className="text-gray-400 leading-relaxed text-center">
+                                    {item.description}
+                                </p>
+                           </div>
+                             {item.title.includes("לשתף פעולה") &&
+            <Button
+              variant="outline" className="bg-slate-500 text-white mt-6 px-4 py-2 text-sm font-medium inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border hover:text-accent-foreground h-10 border-slate-600 hover:bg-slate-700 hover:border-teal-400 transition-all duration-300"
+
+              onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}>
+
+                                  צרו קשר
+                                </Button>
+            }
+                        </motion.div>
+          )}
+                </div>
+            </div>
+        </section>);
+
+}

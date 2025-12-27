@@ -1,0 +1,101 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Users, Briefcase, Handshake, Heart } from "lucide-react";
+
+export default function AboutSection() {
+  const goals = [
+  { icon: Handshake, text: "שימור הקשר עם היחידה הסדירה" },
+  { icon: Users, text: "דאגה למשתחררים" },
+  { icon: Heart, text: "תרומה לחברה בישראל" },
+  { icon: Briefcase, text: "העשרה מקצועית לבוגרים" }];
+
+
+  const stats = [
+  { number: "5", label: "פרויקטים פעילים" },
+  { number: "4", label: "שנות פעילות" },
+  { number: "25", label: "מתנדבים" },
+  { number: "436", label: "חברים" }];
+
+
+  return (
+    <section id="about" className="py-20 bg-slate-800/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16">
+
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-centet">אודות עמותת אלומות
+
+          </h2>
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed text-right">
+            החל משנת 2017 פועלים בוגרי היחידה לקידום יוזמות משותפות בקהילה. בשנת 2021 התאגדה באופן רשמי עמותת הבוגרים "אלומות" (עמותה רשומה) על ידי קבוצת בוגרים מתנדבים, שהניחו את התשתית ליצירת קהילה איכותית ותומכת. מתנדבי העמותה, כולם בוגרי ובוגרות היחידה, פועלים מתוך תחושת שליחות ורצון ליצור רשת ענפה וערכית עבור כלל הבוגרים.
+          </p>
+        </motion.div>
+
+        {/* Our Goals */}
+        <div className="mb-20">
+          <h3 className="text-3xl font-bold text-white mb-10 text-center">המטרות שלנו</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {goals.map((goal, index) =>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2, duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center group">
+
+                <div className="w-20 h-20 bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-teal-600 group-hover:to-cyan-700 transition-all duration-300 shadow-lg">
+                  <goal.icon className="w-10 h-10 text-teal-400 group-hover:text-white transition-colors duration-300" />
+                </div>
+                <h4 className="text-lg font-medium text-white">{goal.text}</h4>
+              </motion.div>
+            )}
+          </div>
+        </div>
+        
+        {/* Stats */}
+        <div className="mb-20">
+            <h3 className="text-3xl font-bold text-white mb-10 text-center">העמותה במספרים</h3>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+              {stats.map((stat, index) =>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+
+                  <h3 className="text-4xl font-bold text-teal-400 mb-2">{stat.number}</h3>
+                  <p className="text-gray-300 text-lg">{stat.label}</p>
+                </motion.div>
+            )}
+            </div>
+        </div>
+
+        {/* Vision & 8200 Collaboration */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div
+            initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
+            className="bg-gradient-to-r from-slate-800 to-slate-700 rounded-3xl p-8">
+
+                <h3 className="text-2xl font-bold text-white mb-4 text-right">חזון הקהילה</h3>
+                <p className="text-gray-300 text-right">העמותה שואפת להוות עבור בוגריה מקור לצמיחה אישית ומקצועית, ולהעניק להם ערך בכל שלבי החיים, החל ממועד שחרורם מהיחידה.</p>
+            </motion.div>
+             <motion.div
+            initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
+            className="bg-gradient-to-r from-slate-800 to-slate-700 rounded-3xl p-8">
+
+                <h3 className="text-2xl font-bold text-white mb-4 text-right">שיתוף פעולה עם עמותת 8200</h3>
+                <p className="text-gray-300 text-right">עמותת אלומות פועלת בשיתוף פעולה עם עמותת בוגרי 8200. בוגרי היחידה, חברי עמותת אלומות, נהנים גם מפעילותה העשירה של עמותת 8200.</p>
+            </motion.div>
+        </div>
+
+      </div>
+    </section>);
+
+}
